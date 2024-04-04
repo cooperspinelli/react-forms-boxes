@@ -54,6 +54,8 @@ function NewBoxForm({ addBox }) {
                 id="backgroundColor"
                 value={formData.backgroundColor}
                 onChange={onChange} />
+
+            <button>Create box</button>
         </form>
     </div>);
 }

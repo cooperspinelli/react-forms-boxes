@@ -1,6 +1,7 @@
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
-import {v4 as uuid} from 'uuid';
+import { useState } from "react";
+import { v4 as uuid } from 'uuid';
 
 /**
  *
@@ -13,51 +14,49 @@ import {v4 as uuid} from 'uuid';
  * none
  */
 
-//  render new box form and list of boxes
-//  make callback to pass to new box from ('addItem')
-
-//  each box needs a removeBox callback function
-//
-
 function BoxList() {
 
-    const [boxList, setBoxList] = useState([])
+    const [boxList, setBoxList] = useState([]);
 
-    function renderBoxes(){
-        return(
+    function renderBoxes() {
+        return (
             <div>
                 {boxList.map((box, idx) => (
-                   <Box
-                   key={box.id}
-                   height={box.height}
-                   width={box.width}
-                   backgroundColor={box.backgroundColor}
-                   removeBox={()=>removeBox(idx)}/>
+                    <Box
+                        key={box.id}
+                        height={box.height}
+                        width={box.width}
+                        backgroundColor={box.backgroundColor}
+                        removeBox={() => removeBox(idx)} />
                 ))}
             </div>
-        )
+        );
     }
 
-    function addBox(item){
+    /** Adds box */
+    function addBox(item) {
         setBoxList(boxList => [...boxList, {
             ...item,
             id: uuid()
-        }])
+        }]);
     }
 
-
-
-    function removeBox(idx){
-
+    /** Removes box at index idx */
+    function removeBox(idx) {
+        setBoxList(boxList => {
+            const boxListClone = [...boxList];
+            boxListClone.splice(idx, 1);
+            return boxListClone;
+        });
     }
 
     //new box form/render boxes
     return (
         <div className="BoxList">
-            <NewBoxForm addBox={addBox}/>
+            <NewBoxForm addBox={addBox} />
             {renderBoxes()}
         </div>
-    )
+    );
 }
 
 export default BoxList;
