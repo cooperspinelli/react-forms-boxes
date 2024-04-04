@@ -39,21 +39,24 @@ function NewBoxForm({ addBox }) {
                 name="height"
                 id="height"
                 value={formData.height}
-                onChange={onChange} />
+                onChange={onChange}
+                required/>
 
             <label htmlFor="width">Width</label>
             <input type="text"
                 name="width"
                 id="width"
                 value={formData.width}
-                onChange={onChange} />
+                onChange={onChange}
+                required/>
 
             <label htmlFor="backgroundColor">Background Color</label>
             <input type="text"
                 name="backgroundColor"
                 id="backgroundColor"
                 value={formData.backgroundColor}
-                onChange={onChange} />
+                onChange={onChange}
+                required/>
 
             <button>Create box</button>
         </form>

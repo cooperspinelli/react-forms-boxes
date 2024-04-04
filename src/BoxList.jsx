@@ -27,7 +27,7 @@ function BoxList() {
                         height={box.height}
                         width={box.width}
                         backgroundColor={box.backgroundColor}
-                        removeBox={() => removeBox(idx)} />
+                        removeBox={() => removeBox(box.id)} />
                 ))}
             </div>
         );
@@ -42,12 +42,8 @@ function BoxList() {
     }
 
     /** Removes box at index idx */
-    function removeBox(idx) {
-        setBoxList(boxList => {
-            const boxListClone = [...boxList];
-            boxListClone.splice(idx, 1);
-            return boxListClone;
-        });
+    function removeBox(id) {
+        setBoxList(boxList => boxList.filter(box => box.id !== id))
     }
 
     //new box form/render boxes
